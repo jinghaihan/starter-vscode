@@ -1,0 +1,87 @@
+{
+  "publisher": "octohash",
+  "name": "ext-name",
+  "displayName": "display-name",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.29.3",
+  "description": "",
+  "author": "jinghaihan",
+  "license": "MIT",
+  "homepage": "https://github.com/jinghaihan/vscode-ext-name#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinghaihan/vscode-ext-name.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jinghaihan/vscode-ext-name/issues"
+  },
+  "keywords": [],
+  "categories": [
+    "Other"
+  ],
+  "exports": {
+    ".": "./dist/index.cjs",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "icon": "res/icon.png",
+  "files": [
+    "LICENSE.md",
+    "dist/*",
+    "res/*"
+  ],
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [],
+    "configuration": {
+      "type": "object",
+      "title": "vscode-ext-name",
+      "properties": {}
+    }
+  },
+  "scripts": {
+    "dev": "pnpm build --watch --sourcemap",
+    "build": "tsdown",
+    "package": "vsce package --no-dependencies",
+    "deps": "taze major -I",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "release": "bumpp",
+    "generate": "vscode-ext-gen --output src/generated/meta.ts",
+    "prepare": "simple-git-hooks && pnpm generate",
+    "bootstrap": "pnpm install",
+    "prepublishOnly": "pnpm build",
+    "vscode:prepublish": "pnpm build"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "catalog:lint",
+    "@types/node": "catalog:types",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "catalog:dev",
+    "bumpp": "catalog:dev",
+    "eslint": "catalog:lint",
+    "lint-staged": "catalog:lint",
+    "pncat": "catalog:dev",
+    "reactive-vscode": "catalog:dev",
+    "simple-git-hooks": "catalog:dev",
+    "taze": "catalog:dev",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:dev",
+    "vitest": "catalog:test",
+    "vscode-ext-gen": "catalog:dev",
+    "vsxpub": "catalog:dev"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
